@@ -107,6 +107,9 @@ ros2 service call /get_filtered_data package_2/srv/GetFilteredData
 ```
 
 # Rodando o package_3
+
+Feedback: A cada número primo encontrado, o servidor envia feedback com o número de primos encontrados até o momento e o último primo encontrado, que são impressos pelo cliente.
+
 Dentro do container:
 
 ```
@@ -115,7 +118,7 @@ ros2 run package_3 prime_action_server
 # Em outro terminal (também no container):
 ros2 action send_goal /find_prime package_3/action/FindPrime "{target_prime: 10}"
 # Mude o valor de "target_prime" para "n", assim o servidor procura pelo n-ésimo número primo.
-#Como os valores dos feedbacks intermediários não podem ser vistos diretamente pelo comando acima, um nó cliente foi criado para imprimir no terminal todas as informações, e pode ser rodado pelo comando:
+# Como os valores dos feedbacks intermediários não podem ser vistos diretamente pelo comando acima, um nó cliente foi criado para imprimir no terminal todas as informações, e pode ser rodado pelo comando:
 ros2 run package_3 prime_action_client 10
 # Onde o primeiro argumeto representa o "target_prime" enviado ao servidor.
 
