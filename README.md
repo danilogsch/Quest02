@@ -77,7 +77,7 @@ Um parâmetro booleano foi implementado, chamado "use_single_topic", ele control
 ros2 run package_1 memory_monitor_publisher
 # Em um terminal diferente (também no container):
 . install/setup.bash
-ros2 param set /memory_monitor_publisher use_single_topic true
+ros2 param set /memory_monitor_publisher use_single_topic false
 # Verifique os tópicos publicados:
 ros2 topic list
 # Verifique a frequência de mensagens em cada tópico, e.g.:
