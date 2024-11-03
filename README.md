@@ -5,13 +5,14 @@ Repositório contendo arquivos da segunda questão da Prova Prática do Processo
 
 - pacote_1 publica mensagens a cada 1 (um) segundo com informações sobre a quantidade total de memória, o uso de memória RAM em Gigabyte e o percentual do uso;
 
--pacote_2 simula a leitura de um sensor com uma taxa de amostragem de 1 Hz. Os dados do sensor passam por um filtro de média móvel considerando os últimos 5 valores adquiridos pelo sensor. Esse pacote provem duas interfaces de serviço, a primeira retorna os últimos 64 resultados gerados pelo filtro, e a segunda zera os dados gerados pelo filtro;
+- pacote_2 simula a leitura de um sensor com uma taxa de amostragem de 1 Hz. Os dados do sensor passam por um filtro de média móvel considerando os últimos 5 valores adquiridos pelo sensor. Esse pacote provem duas interfaces de serviço, a primeira retorna os últimos 64 resultados gerados pelo filtro, e a segunda zera os dados gerados pelo filtro;
 
--pacote_3 encontra, via requisição de ação, o décimo número primo, gerando respostas intermediárias pela interface de ação e também o resultado final.
+- pacote_3 encontra, via requisição de ação, o décimo número primo, gerando respostas intermediárias pela interface de ação e também o resultado final.
 
-# Instalação
+# Instalação (Testado no Ubuntu Jammy 22.04)
 
 Use the next commands to install docker engine and docker compose (instructions from official website):
+Use os próximos comandos para installar o docker engine e docker compose (instructions from official ![website]{https://docs.docker.com/desktop/install/linux/})
 
 ```
 # uninstall conflicting packages
