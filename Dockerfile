@@ -12,9 +12,8 @@ SHELL ["/bin/bash", "-c"]
  
 # # Build the base Colcon workspace, installing dependencies first.
 # WORKDIR /ros2_ws
-# RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
-#  && apt-get update -y \
-#  && colcon build --symlink-install
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
+ && apt-get update -y 
 
  # Use Cyclone DDS as middleware
  RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -41,17 +40,16 @@ SHELL ["/bin/bash", "-c"]
   && chown -R ${UID}:${GID} /home/${USERNAME}
   
  # Set the ownership of the ros2 workspace to the new user
- RUN chown -R ${UID}:${GID} /ros2_ws/
+#  RUN chown -R ${UID}:${GID} /ros2_ws/"
   
  # Set the user and source entrypoint in the user's .bashrc file
  USER ${USERNAME}
- RUN echo "source /entrypoint.sh" >> /home/${USERNAME}/.bashrc
+#  RUN echo "source /entrypoint.sh" >> /home/${USERNAME}/.bashrc
+ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/${USERNAME}/.bashrc
  WORKDIR /home/${USERNAME}
  # Create Colcon workspace with external dependencies
- RUN mkdir -p /ros2_ws/src
+ RUN mkdir -p /home/${USERNAME:-devuser}/ros2_ws/src
   
  # Build the base Colcon workspace, installing dependencies first.
  WORKDIR /home/${USERNAME}/ros2_ws
- RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
-  && apt-get update -y \
-  && colcon build --symlink-install
+ RUN colcon build --symlink-install

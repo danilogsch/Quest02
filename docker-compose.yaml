@@ -25,9 +25,9 @@ services:
       # Allows graphical programs in the container.
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
-      - ./package_1:/ros2_ws/src/package_1
-      - ./package_2:/ros2_ws/src/package_2
-      - ./package_3:/ros2_ws/src/package_3
+      - ./package_1:/home/${USERNAME:-devuser}/ros2_ws/src/package_1
+      - ./package_2:/home/${USERNAME:-devuser}/ros2_ws/src/package_2
+      - ./package_3:/home/${USERNAME:-devuser}/ros2_ws/src/package_3
     command: tail -f /dev/null
 
   dev:

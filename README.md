@@ -3,11 +3,11 @@ Repositório contendo arquivos da segunda questão da Prova Prática do Processo
 
 # Conteúdo
 
-- pacote_1 publica mensagens a cada 1 (um) segundo com informações sobre a quantidade total de memória, o uso de memória RAM em Gigabyte e o percentual do uso;
+- package_1 publica mensagens a cada 1 (um) segundo com informações sobre a quantidade total de memória, o uso de memória RAM em Gigabyte e o percentual do uso;
 
-- pacote_2 simula a leitura de um sensor com uma taxa de amostragem de 1 Hz. Os dados do sensor passam por um filtro de média móvel considerando os últimos 5 valores adquiridos pelo sensor. Esse pacote provem duas interfaces de serviço, a primeira retorna os últimos 64 resultados gerados pelo filtro, e a segunda zera os dados gerados pelo filtro;
+- package_2 simula a leitura de um sensor com uma taxa de amostragem de 1 Hz. Os dados do sensor passam por um filtro de média móvel considerando os últimos 5 valores adquiridos pelo sensor. Esse pacote provem duas interfaces de serviço, a primeira retorna os últimos 64 resultados gerados pelo filtro, e a segunda zera os dados gerados pelo filtro;
 
-- pacote_3 encontra, via requisição de ação, o décimo número primo, gerando respostas intermediárias pela interface de ação e também o resultado final.
+- package_3 encontra, via requisição de ação, o décimo número primo, gerando respostas intermediárias pela interface de ação e também o resultado final.
 
 # Instalação (Testado no Ubuntu Jammy 22.04)
 
@@ -44,7 +44,7 @@ docker run hello-world
 
 ```
 
-Clone o repositório, contrua a imagem e rode o container:
+Clone o repositório, contrua a imagem, rode o container, construa os pacotes:
 
 ```
 mkdir danilo
@@ -53,5 +53,39 @@ git clone https://github.com/danilogsch/Quest02.git
 cd Quest02
 docker compose up -d dev
 docker compose exec -it dev bash
+colcon build
+```
+
+# Rodando o package_1
+
+Dentro do container:
 
 ```
+ros2 run package_1 memory_monitor_publisher
+# Em um terminal diferente:
+ros2 topic echo /memory_info
+# Verifique a frequência de mensagens no tópico:
+ros2 topic hz /memory_info
+```
+
+Um parâmetro booleano foi implementado, chamado "use_single_topic", ele controla se o nó publica todas as informações requeridas em um tópico do tipo string "/memory_info". O valor default do parâmetro é true, quando configurado em false, o nó publica as informações requeridas em 3 tópicos distintos do tipo float ("total_memory", "used_memory" e "memory_percent"). Como se trata de um parâmetro e não um argumento, ele pode ser modificado enquanto o nó roda:
+
+```
+ros2 run package_1 memory_monitor_publisher
+# Em um terminal diferente:
+ros2 param set /memory_monitor_publisher use_single_topic true
+# Verifique os tópicos publicados:
+ros2 topic list
+# Verifique a frequência de mensagens em cada tópico, e.g.:
+ros2 topic hz /memory_percent
+# Verifique o conteúdo das mensagens em cada tópico, e.g.:
+ros2 topic echo /total_memory
+```
+
+o nó também pode ser rodado com o parâmetro false pelo comando:
+
+```
+ros2 run package_1 memory_monitor_publisher --ros-args -p "use_single_topic:=false"
+```
+
+# Rodando o package_2
