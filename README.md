@@ -116,6 +116,7 @@ Dentro do container:
 . install/setup.bash
 ros2 run package_3 prime_action_server
 # Em outro terminal (também no container):
+. install/setup.bash
 ros2 action send_goal /find_prime package_3/action/FindPrime "{target_prime: 10}"
 # Mude o valor de "target_prime" para "n", assim o servidor procura pelo n-ésimo número primo.
 # Como os valores dos feedbacks intermediários não podem ser vistos diretamente pelo comando acima, um nó cliente foi criado para imprimir no terminal todas as informações, e pode ser rodado pelo comando:
