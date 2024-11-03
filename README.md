@@ -12,7 +12,7 @@ Repositório contendo arquivos da segunda questão da Prova Prática do Processo
 # Instalação (Testado no Ubuntu Jammy 22.04)
 
 Use the next commands to install docker engine and docker compose (instructions from official website):
-Use os próximos comandos para installar o docker engine e docker compose (instructions from official ![website](https://docs.docker.com/desktop/install/linux/)
+Use os próximos comandos para installar o docker engine e docker compose (instructions from official [website](https://docs.docker.com/desktop/install/linux/).
 
 ```
 # uninstall conflicting packages
@@ -45,7 +45,7 @@ docker run hello-world
 
 ```
 
-Clone the repository and build the image/run the container
+Clone o repositório, contrua a imagem e rode o container:
 
 ```
 mkdir danilo
