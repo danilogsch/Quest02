@@ -11,7 +11,7 @@ Repositório contendo arquivos da segunda questão da Prova Prática do Processo
 
 # Instalação (Testado no Ubuntu Jammy 22.04)
 
-Use os próximos comandos para installar o docker engine e docker compose (instructions from official [website](https://docs.docker.com/desktop/install/linux/).
+Use os próximos comandos para installar o docker engine e docker compose (instructions from official [website](https://docs.docker.com/desktop/install/linux/)).
 
 ```
 # uninstall conflicting packages
@@ -54,6 +54,7 @@ cd Quest02
 docker compose up -d dev
 docker compose exec -it dev bash
 colcon build
+. install/setup.bash
 ```
 
 # Rodando o package_1
@@ -73,6 +74,7 @@ Um parâmetro booleano foi implementado, chamado "use_single_topic", ele control
 ```
 ros2 run package_1 memory_monitor_publisher
 # Em um terminal diferente:
+. install/setup.bash
 ros2 param set /memory_monitor_publisher use_single_topic true
 # Verifique os tópicos publicados:
 ros2 topic list
@@ -89,3 +91,19 @@ ros2 run package_1 memory_monitor_publisher --ros-args -p "use_single_topic:=fal
 ```
 
 # Rodando o package_2
+Dentro do container:
+
+```
+. install/setup.bash
+ros2 run package_2 sensor_node
+# Em um terminal diferente:
+. install/setup.bash
+# Chame o serviço para retornar os últimos 64 resultados gerados pelo filtro através do código:
+ros2 service call /get_filtered_data package_2/srv/GetFilteredData
+# Chame o serviço para zerar os dados gerados pelo filtro:
+ros2 service call /get_filtered_data package_2/srv/GetFilteredData
+```
+
+# Rodando o package_3
+Dentro do container:
+

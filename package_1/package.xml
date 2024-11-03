@@ -3,7 +3,8 @@
 <package format="3">
   <name>package_1</name>
   <version>0.0.0</version>
-  <description>Este pacote publica mensagens a cada 1 (um) segundo com informações sobre a quantidade total de memória, o uso de memória RAM em Gigabyte e o percentual do uso.</description>
+  <description>Este pacote publica mensagens a cada 1 (um) segundo com informações sobre a
+    quantidade total de memória, o uso de memória RAM em Gigabyte e o percentual do uso.</description>
   <maintainer email="danilo_gsch@hotmail.com">Danilo Giacomin Schneider</maintainer>
   <license>TODO: License declaration</license>
 
