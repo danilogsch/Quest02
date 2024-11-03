@@ -103,7 +103,7 @@ ros2 run package_2 sensor_node
 # Chame o serviço para retornar os últimos 64 resultados gerados pelo filtro através do código:
 ros2 service call /get_filtered_data package_2/srv/GetFilteredData
 # Chame o serviço para zerar os dados gerados pelo filtro:
-ros2 service call /get_filtered_data package_2/srv/GetFilteredData
+ros2 service call /reset_filtered_data std_srvs/srv/Empty
 ```
 
 # Rodando o package_3
