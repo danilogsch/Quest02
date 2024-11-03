@@ -57,13 +57,15 @@ colcon build
 . install/setup.bash
 ```
 
+Obs.: o comando "docker compose exec -it dev bash" pode ser usado diversar vezes na pasta do repositório para gerar multiplos terminais iterativos no container.
+
 # Rodando o package_1
 
 Dentro do container:
 
 ```
 ros2 run package_1 memory_monitor_publisher
-# Em um terminal diferente:
+# Em um terminal diferente (também no container):
 ros2 topic echo /memory_info
 # Verifique a frequência de mensagens no tópico:
 ros2 topic hz /memory_info
@@ -73,7 +75,7 @@ Um parâmetro booleano foi implementado, chamado "use_single_topic", ele control
 
 ```
 ros2 run package_1 memory_monitor_publisher
-# Em um terminal diferente:
+# Em um terminal diferente (também no container):
 . install/setup.bash
 ros2 param set /memory_monitor_publisher use_single_topic true
 # Verifique os tópicos publicados:
@@ -96,7 +98,7 @@ Dentro do container:
 ```
 . install/setup.bash
 ros2 run package_2 sensor_node
-# Em um terminal diferente:
+# Em um terminal diferente (também no container):
 . install/setup.bash
 # Chame o serviço para retornar os últimos 64 resultados gerados pelo filtro através do código:
 ros2 service call /get_filtered_data package_2/srv/GetFilteredData
@@ -107,3 +109,14 @@ ros2 service call /get_filtered_data package_2/srv/GetFilteredData
 # Rodando o package_3
 Dentro do container:
 
+```
+. install/setup.bash
+ros2 run package_3 prime_action_server
+# Em outro terminal (também no container):
+ros2 action send_goal /find_prime package_3/action/FindPrime "{target_prime: 10}"
+# Mude o valor de "target_prime" para "n", assim o servidor procura pelo n-ésimo número primo.
+#Como os valores dos feedbacks intermediários não podem ser vistos diretamente pelo comando acima, um nó cliente foi criado para imprimir no terminal todas as informações, e pode ser rodado pelo comando:
+ros2 run package_3 prime_action_client 10
+# Onde o primeiro argumeto representa o "target_prime" enviado ao servidor.
+
+```

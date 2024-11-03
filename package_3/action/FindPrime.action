@@ -1,0 +1,9 @@
+# Define o objetivo da ação (décimo número primo)
+int32 target_prime  # O número alvo para o qual o enésimo primo será calculado
+---
+# Definição da resposta final
+int32 result  # O décimo número primo encontrado
+---
+# Feedback com atualizações intermediárias
+int32 current_prime_count  # Contador de primos encontrados até agora
+int32 latest_prime         # Último número primo encontrado
